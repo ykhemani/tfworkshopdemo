@@ -24,6 +24,6 @@ resource "aws_instance" "web" {
   count         = 2
 
   tags = {
-    Name = "HelloWorld"
+    Name = "workshop_demo_2021"
   }
 }

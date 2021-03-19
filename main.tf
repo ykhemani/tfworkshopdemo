@@ -21,7 +21,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.small"
-  count         = 2
+  count         = 4
 
   tags = {
     Name = "workshop_demo_2021"

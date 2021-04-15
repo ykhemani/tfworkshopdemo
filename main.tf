@@ -20,10 +20,22 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.2xlarge"
+  instance_type = "t2.small"
   count         = 3
 
   tags = {
     Name = "demo_2021_${count.index}"
   }
+}
+
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket = "my-s3-bucket-prakash-2021"
+  acl    = "private"
+
+  versioning = {
+    enabled = true
+  }
+
 }

@@ -86,7 +86,7 @@ resource "aws_instance" "web" {
   subnet_id               = aws_subnet.hashi.id
   vpc_security_group_ids  = [aws_security_group.hashi.id]
   instance_type           = "t2.small"
-  count                   = 2
+  count                   = 5
 
   tags = {
     Name = "demo_2021_${count.index}"

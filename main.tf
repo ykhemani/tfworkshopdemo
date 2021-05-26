@@ -90,6 +90,8 @@ resource "aws_instance" "web" {
 
   tags = {
     Name = "demo_2021_${count.index}"
+    Project = "FEPOC_Main"
+    Environment = "Development"
   }
 }
 

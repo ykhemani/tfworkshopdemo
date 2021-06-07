@@ -8,6 +8,7 @@ resource "aws_vpc" "hashi" {
 
   tags = {
     name = "${var.prefix}-vpc-${var.region}"
+    importid = "FN20210001"
   }
 }
 
@@ -19,6 +20,7 @@ resource "aws_vpc" "hashi" {
 
    tags = {
      name = "${var.prefix}-subnet"
+     importid = "FN20210001"
    }
  }
 
@@ -60,6 +62,7 @@ resource "aws_vpc" "hashi" {
 
    tags = {
      Name = "${var.prefix}-security-group"
+     importid = "FN20210001"
    }
 }
 
@@ -92,6 +95,7 @@ resource "aws_instance" "web" {
     Name = "demo_2021_fanniemae_${count.index}"
     Project = "workshop_Main"
     Environment = "Development"
+    importid = "FN20210001"
   }
 }
 

@@ -92,7 +92,7 @@ resource "aws_instance" "web" {
   count                   = 5
 
   tags = {
-    Name = "demo_2021_fanniemae_${count.index}"
+    Name = "demo_2021_${count.index}"
     Project = "workshop_Main"
     Environment = "Development"
     importid = "FN20210001"

@@ -6,9 +6,9 @@
 # Terraform code. If you create a variable with no default, the user will be
 # prompted to enter it (or define it via config file or command line flags.)
 
-variable "prefix" {
-  description = "This prefix will be included in the name of most resources."
-  default     = "prakashdemo"
+variable "environment" {
+  description = "This environment for this stack"
+  default     = "prod"
 }
 
 variable "region" {
@@ -29,9 +29,4 @@ variable "subnet_prefix" {
 variable "instance_type" {
   description = "Specifies the AWS instance type."
   default     = "t2.micro"
-}
-
-variable "admin_username" {
-  description = "Administrator user name for mysql"
-  default     = "hashicorp"
 }

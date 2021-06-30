@@ -7,7 +7,8 @@ resource "aws_vpc" "hashi" {
   enable_dns_hostnames = true
 
   tags = {
-    name = "${var.prefix}-vpc-${var.region}"
+    Name = "${var.environment}-vpc-${var.region}"
+    Environment = var.environment
     importid = "FN20210001"
   }
 }
@@ -17,7 +18,8 @@ resource "aws_subnet" "hashi" {
    cidr_block = var.subnet_prefix
 
    tags = {
-     name = "${var.prefix}-subnet"
+     Name = "${var.environment}-subnet"
+     Environment = var.environment
      importid = "FN20210001"
    }
  }
@@ -57,7 +59,8 @@ resource "aws_security_group" "hashi" {
    }
 
    tags = {
-     Name = "${var.prefix}-security-group"
+     Name = "${var.environment}-security-group"
+     Environment = var.environment
      importid = "FN20210001"
    }
 }
@@ -83,12 +86,12 @@ resource "aws_instance" "web" {
   subnet_id               = aws_subnet.hashi.id
   vpc_security_group_ids  = [aws_security_group.hashi.id]
   instance_type           = "t2.small"
-  count                   = 5
+  count                   = 2
 
   tags = {
-    Name = "${var.prefix}_demo_2021_${count.index}"
+    Name = "${var.environment}_demo_2021_${count.index}"
     Project = "workshop_Main"
-    Environment = var.prefix
+    Environment = var.environment
     importid = "FN20210001"
   }
 }

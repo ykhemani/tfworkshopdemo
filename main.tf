@@ -82,13 +82,13 @@ resource "aws_instance" "web" {
   ami                     = data.aws_ami.ubuntu.id
   subnet_id               = aws_subnet.hashi.id
   vpc_security_group_ids  = [aws_security_group.hashi.id]
-  instance_type           = "t2.medium"
+  instance_type           = "t2.small"
   count                   = 5
 
   tags = {
-    Name = "demo_2021_53bank_${count.index}"
+    Name = "${var.prefix}_demo_2021_${count.index}"
     Project = "workshop_Main"
-    Environment = "Development"
+    Environment = var.prefix
     importid = "FN20210001"
   }
 }

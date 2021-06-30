@@ -25,7 +25,7 @@ resource "aws_subnet" "hashi" {
  }
 
 resource "aws_security_group" "hashi" {
-   name = "${var.prefix}-security-group"
+   name = "${var.environment}-security-group"
 
    vpc_id = aws_vpc.hashi.id
 

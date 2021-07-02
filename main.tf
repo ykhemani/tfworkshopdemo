@@ -1,5 +1,14 @@
 provider "aws" {
   region = var.region
+  default_tags {
+   tags = {
+     Name = "${var.environment}-default-${var.region}"
+     Environment = var.environment
+     Owner       = "TFProviders"
+     Project     = "Test"
+     importid = "FN20210001"
+   }
+ }
 }
 
 resource "aws_vpc" "hashi" {
@@ -8,8 +17,6 @@ resource "aws_vpc" "hashi" {
 
   tags = {
     Name = "${var.environment}-vpc-${var.region}"
-    Environment = var.environment
-    importid = "FN20210001"
   }
 }
 
@@ -19,8 +26,6 @@ resource "aws_subnet" "hashi" {
 
    tags = {
      Name = "${var.environment}-subnet"
-     Environment = var.environment
-     importid = "FN20210001"
    }
  }
 
@@ -60,8 +65,6 @@ resource "aws_security_group" "hashi" {
 
    tags = {
      Name = "${var.environment}-security-group"
-     Environment = var.environment
-     importid = "FN20210001"
    }
 }
 
@@ -90,9 +93,6 @@ resource "aws_instance" "web" {
 
   tags = {
     Name = "${var.environment}_demo_2021_${count.index}"
-    Project = "workshop_Main"
-    Environment = var.environment
-    importid = "FN20210001"
   }
 }
 

@@ -8,7 +8,7 @@
 
 variable "environment" {
   description = "This environment for this stack"
-  default     = "prod"
+  default     = "fanniemae_prod"
 }
 
 variable "region" {

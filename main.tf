@@ -6,7 +6,7 @@ provider "aws" {
      Environment = var.environment
      Owner       = "TFProviders"
      Project     = "Test"
-     importid = "FN20210001"
+     importid = "FN202100012"
    }
  }
 }

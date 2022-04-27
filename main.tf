@@ -1,14 +1,14 @@
 provider "aws" {
   region = var.region
   default_tags {
-   tags = {
-     Name = "${var.environment}-default-${var.region}"
-     Environment = var.environment
-     Owner       = "TFProviders"
-     Project     = "Test"
-     importid = "FN202100012"
-   }
- }
+    tags = {
+      Name        = "prakash-bridgecrew-test"
+      Environment = var.environment
+      Owner       = "TFProviders"
+      Project     = "Test"
+      importid    = "FN202100012"
+    }
+  }
 }
 
 resource "aws_vpc" "hashi" {
@@ -21,51 +21,51 @@ resource "aws_vpc" "hashi" {
 }
 
 resource "aws_subnet" "hashi" {
-   vpc_id     = aws_vpc.hashi.id
-   cidr_block = var.subnet_prefix
+  vpc_id     = aws_vpc.hashi.id
+  cidr_block = var.subnet_prefix
 
-   tags = {
-     Name = "${var.environment}-subnet"
-   }
- }
+  tags = {
+    Name = "${var.environment}-subnet"
+  }
+}
 
 resource "aws_security_group" "hashi" {
-   name = "${var.environment}-security-group"
+  name = "${var.environment}-security-group"
 
-   vpc_id = aws_vpc.hashi.id
+  vpc_id = aws_vpc.hashi.id
 
-   ingress {
-     from_port   = 22
-     to_port     = 22
-     protocol    = "tcp"
-     cidr_blocks = ["0.0.0.0/0"]
-   }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-   ingress {
-     from_port   = 80
-     to_port     = 80
-     protocol    = "tcp"
-     cidr_blocks = ["0.0.0.0/0"]
-   }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-   ingress {
-     from_port   = 443
-     to_port     = 443
-     protocol    = "tcp"
-     cidr_blocks = ["0.0.0.0/0"]
-   }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-   egress {
-     from_port       = 0
-     to_port         = 0
-     protocol        = "-1"
-     cidr_blocks     = ["0.0.0.0/0"]
-     prefix_list_ids = []
-   }
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+    prefix_list_ids = []
+  }
 
-   tags = {
-     Name = "${var.environment}-security-group"
-   }
+  tags = {
+    Name = "${var.environment}-security-group"
+  }
 }
 
 data "aws_ami" "ubuntu" {
@@ -85,14 +85,14 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami                     = data.aws_ami.ubuntu.id
-  subnet_id               = aws_subnet.hashi.id
-  vpc_security_group_ids  = [aws_security_group.hashi.id]
-  instance_type           = "t2.2xlarge"
-  count                   = 3
+  ami                    = data.aws_ami.ubuntu.id
+  subnet_id              = aws_subnet.hashi.id
+  vpc_security_group_ids = [aws_security_group.hashi.id]
+  instance_type          = "t2.small"
+  count                  = 1
 
   tags = {
-    Name = "${var.environment}_demo_2021_${count.index}"
+    Name     = "${var.environment}_demo_2021_${count.index}"
     Customer = "Anthem"
   }
 }

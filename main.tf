@@ -4,7 +4,7 @@ provider "aws" {
     tags = {
       Name        = "prakash-bridgecrew-test"
       Environment = var.environment
-      Owner       = "TFProviders"
+      Owner       = "TFProviders - test"
       Project     = "Test"
       importid    = "FN202100012"
     }

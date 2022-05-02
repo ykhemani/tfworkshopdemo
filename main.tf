@@ -20,6 +20,14 @@ resource "aws_vpc" "hashi" {
   }
 }
 
+resource "aws_flow_log" "example" {
+  iam_role_arn    = "arn"
+  log_destination = "log"
+  traffic_type    = "ALL"
++ vpc_id          = aws_vpc.hashi.id
+}
+
+
 resource "aws_subnet" "hashi" {
   vpc_id     = aws_vpc.hashi.id
   cidr_block = var.subnet_prefix
@@ -35,8 +43,8 @@ resource "aws_security_group" "hashi" {
   vpc_id = aws_vpc.hashi.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 23
+    to_port     = 23
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -95,6 +103,9 @@ resource "aws_instance" "web" {
     Name     = "${var.environment}_demo_2021_${count.index}"
     Customer = "Anthem"
   }
+
+  monitoring = true
+  ebs_optimized = true
 }
 
 #module "s3_bucket" {

@@ -20,12 +20,13 @@ resource "aws_vpc" "hashi" {
   }
 }
 
+/**
 resource "aws_flow_log" "example" {
   iam_role_arn    = "arn"
   log_destination = "log"
   traffic_type    = "ALL"
-+ vpc_id          = aws_vpc.hashi.id
-}
+  vpc_id          = aws_vpc.hashi.id
+}**/
 
 
 resource "aws_subnet" "hashi" {

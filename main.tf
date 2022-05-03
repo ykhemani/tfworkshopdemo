@@ -104,9 +104,6 @@ resource "aws_instance" "web" {
     Name     = "${var.environment}_demo_2021_${count.index}"
     Customer = "Anthem"
   }
-
-  monitoring = true
-  ebs_optimized = true
 }
 
 #module "s3_bucket" {

@@ -44,8 +44,8 @@ resource "aws_security_group" "hashi" {
   vpc_id = aws_vpc.hashi.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 200
+    to_port     = 200
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

@@ -47,21 +47,21 @@ resource "aws_security_group" "hashi" {
     from_port   = 26
     to_port     = 26
     protocol    = "tcp"
-    cidr_blocks = ["10.0.1.0/0"]
+    cidr_blocks = ["10.0.0.0/22"]
   }
 
   ingress {
     from_port   = 8200
     to_port     = 8200
     protocol    = "tcp"
-    cidr_blocks = ["10.0.1.0/0"]
+    cidr_blocks = ["10.0.0.0/22"]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["10.0.1.0/0"]
+    cidr_blocks = ["10.0.0.22/0"]
   }
 
   egress {

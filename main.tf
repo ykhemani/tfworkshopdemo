@@ -103,8 +103,8 @@ resource "aws_instance" "web" {
   count                  =  1
 
   tags = {
-    Name     = "Anthem-workshop-demo"
-    Customer = "Anthem"
+    Name     = "hashi-workshop-demo"
+    Customer = "hashicorp"
   }
 }
 

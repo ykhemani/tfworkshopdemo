@@ -2,11 +2,11 @@ provider "aws" {
   region = var.region
   default_tags {
     tags = {
-      Name        = "prakash-test"
+      Name        = "yash-demo"
       Environment = var.environment
-      Owner       = "TFProviders - test"
-      Project     = "Test"
-      importid    = "FN202100012"
+      Owner       = "TFProviders - Demo"
+      Project     = "Demo"
+      importid    = "HC20241007"
     }
   }
 }
@@ -19,15 +19,6 @@ resource "aws_vpc" "hashi" {
     Name = "${var.environment}-vpc-${var.region}"
   }
 }
-
-/**
-resource "aws_flow_log" "example" {
-  iam_role_arn    = "arn"
-  log_destination = "log"
-  traffic_type    = "ALL"
-  vpc_id          = aws_vpc.hashi.id
-}**/
-
 
 resource "aws_subnet" "hashi" {
   vpc_id     = aws_vpc.hashi.id
@@ -97,9 +88,8 @@ resource "aws_instance" "web" {
   ami                    = data.aws_ami.ubuntu.id
   subnet_id              = aws_subnet.hashi.id
   vpc_security_group_ids = [aws_security_group.hashi.id]
-  instance_type          = "t2.small"
-  #key_name               = "Prakash-demo"
-  #associate_public_ip_address  = true
+  instance_type          = var.instance_type
+  associate_public_ip_address  = true
   count                  =  4
 
   tags = {
@@ -110,7 +100,7 @@ resource "aws_instance" "web" {
 
 #module "s3_bucket" {
 #  source = "terraform-aws-modules/s3-bucket/aws"
-#  bucket = "my-s3-bucket-prakash-2021"
+#  bucket = "my-s3-bucket"
 #  acl    = "private"
 #
 #  versioning = {
